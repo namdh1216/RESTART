@@ -20,6 +20,8 @@ int 기분 = 3;
 int 스프수 = 0;
 int 친밀도 = 2;
 int 상호작용 = 0;
+int hasScratcher = 0;
+int hasCatTower = 0;
 
 int main(void) {
     char catName[100];
@@ -35,6 +37,7 @@ int main(void) {
     system("cls");
 
     while (1) {
+        // 상태 출력
         printf("============현재상태===========\n");
         printf("지금까지 만든 수프의 개수: %d개\n", 스프수);
         printf("CP: %d 포인트\n", cp);
@@ -57,6 +60,7 @@ int main(void) {
         printf("===============================\n\n");
         Sleep(500);
 
+        // 기분 나빠짐 로직
         printf("6-%d: 주사위 눈이 %d이하이면 그냥 기분이 나빠집니다...고양이니까?\n", 친밀도, 6 - 친밀도);
         printf("주사위를 굴립니다. 또르르...\n");
         srand((unsigned int)time(NULL));
@@ -75,7 +79,7 @@ int main(void) {
             printf("기분은 그대로입니다.\n");
         }
 
-
+        // 이동
         if (기분 == 0) {
             for (int x = 0; x < ROOM_WIDTH; x++) {
                 if (room[catY][x] == 'H') {
@@ -85,6 +89,41 @@ int main(void) {
                     printf("%s은(는) 기분이 매우 나빠서 집으로 향합니다.\n", catName);
                     break;
                 }
+            }
+        }
+        else if (기분 == 1) {
+            printf("%s은(는) 심심해서 놀잇감을 찾고 있습니다...\n", catName);
+            if (hasScratcher) {
+                for (int x = 0; x < ROOM_WIDTH; x++) {
+                    if (room[catY][x] == 'S') {
+                        if (catX < x) catX++;
+                        else if (catX > x) catX--;
+                        else {
+                            printf("%s은(는) 스크래처를 긁고 놀았습니다. 기분이 조금 좋아졌습니다: %d -> %d\n", catName, 기분, 기분 + 1);
+                            if (기분 < 3) 기분++;
+                        }
+                        break;
+                    }
+                }
+            }
+            else if (hasCatTower) {
+                for (int x = 0; x < ROOM_WIDTH; x++) {
+                    if (room[catY][x] == 'T') {
+                        if (catX < x) catX++;
+                        else if (catX > x) catX--;
+                        else {
+                            printf("%s은(는) 캣타워를 뛰어다닙니다. 기분이 제법 좋아졌습니다: %d -> %d\n", catName, 기분, 기분 + 2);
+                            기분 += 2;
+                            if (기분 > 3) 기분 = 3;
+                        }
+                        break;
+                    }
+                }
+            }
+            else {
+                printf("놀 거리가 없어서 기분이 매우 나빠집니다: %d -> ", 기분);
+                기분 = 0;
+                printf("%d\n", 기분);
             }
         }
         else if (기분 == 2) {
@@ -105,6 +144,7 @@ int main(void) {
             }
         }
 
+        // 방 출력
         for (int y = 0; y < ROOM_HEIGHT; y++) {
             for (int x = 0; room[y][x] != '\0'; x++) {
                 if (x == catX && y == catY)
@@ -115,7 +155,7 @@ int main(void) {
             printf("\n");
         }
 
-
+        // 상호작용
         printf("어떤상호작용을하시겠습니까?   0.아무것도하지않음 1.긁어주기>> ");
         scanf_s("%d", &상호작용);
 
@@ -138,7 +178,6 @@ int main(void) {
             else {
                 printf("다행히 친밀도가 떨어지지 않았습니다.\n");
             }
-            printf("현재 친밀도: %d\n\n", 친밀도);
         }
         else {
             printf("%s의 턱을 긁어주었습니다.\n2/6의확률로친밀도가높아집니다.\n주사위를굴립니다. 또르륵...\n", catName);
@@ -151,7 +190,6 @@ int main(void) {
             else {
                 printf("친밀도는 그대로입니다.\n");
             }
-            printf("현재 친밀도: %d\n\n", 친밀도);
         }
 
         Sleep(1000);
@@ -159,4 +197,3 @@ int main(void) {
 
     return 0;
 }
-
