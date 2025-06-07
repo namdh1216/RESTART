@@ -75,4 +75,22 @@ int main(void) {
 		printf("==================================================\n");
 		Sleep(500);
 
+		//기분 나빠지는 로직
+		int DiceRoll = ran(6, 1);
+		printf("6-%d: 주사위 눈이 %d이하이면 그냥 기분이 나빠집니다. 고양이니까?\n", RE, 6 - RE);
+		printf("주사위를 굴립니다. 또르륵...\n");
+		printf("%d이(가) 나왔습니다.\n", DiceRoll);
+		if (DiceRoll <= 6 - RE) {
+			int 기분 = Feelings;
+			if (Feelings <= 0) {
+				printf("더이상 기분이 나빠지지 않습니다.: ");
+			}
+			else {
+				Feelings--;
+				printf("%s의 기분이 나빠집니다: ", name);
+			}
+			printf("%d->%d\n", 기분, Feelings);
+		}
+		
+	}
 }
