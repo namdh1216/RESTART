@@ -18,30 +18,31 @@ void sp() {
 
 int 고양이위치 = 집위치;
 int 이전위치;
-int 스크래쳐위치 = -1;
-int 캣타워위치 = -1;
-int 스크래쳐설치됨 = 0;
-int 캣타워설치됨 = 0;
 char 이름[50];
 int 기분, 친밀도;
-int 스크래쳐구매됨 = 0;
-int 캣타워구매됨 = 0;
 int CP = 0;
 int 쥐장난감구매함;
-
-
+int 이전위치;
+int 고양이위치 = 1;
+int 스크 = ran(냄비위치 - 1, 집위치 + 1);
+int 캣타 = ran(냄비위치 - 1, 집위치 + 1);
+int 캣타워유무 = 0;
+int 스크유무 = 0;
 
 void 집그리기() {
+	printf("\n");
 	for (int i = 0; i < 4; i++) {
+
 		for (int j = 0; j < 공간크기; j++) {
+
 			if (j == 0 || j == 공간크기 - 1 || i == 0 || i == 3) {
 				printf("#");
 			}
-			else if (i == 1 && j == 집위치) {
-				printf("H");
-			}
 			else if (i == 1 && j == 냄비위치) {
 				printf("B");
+			}
+			else if (i == 냄비위치 && j == 1) {
+				printf("H");
 			}
 			else if (i == 2 && j == 이전위치 && 이전위치 != 고양이위치) {
 				printf(".");
@@ -49,11 +50,18 @@ void 집그리기() {
 			else if (i == 2 && j == 고양이위치) {
 				printf("C");
 			}
+			else if (캣타워유무 == 1 && i == 1 && j == 캣타) {
+				printf("T");
+			}
+			else if (스크유무 == 1 && i == 1 && j == 스크) {
+				printf("S");
+			}
 			else {
 				printf(" ");
 			}
 		}
 		printf("\n");
+
 	}
 }
 void 상호작용() {
@@ -151,6 +159,7 @@ void 상호작용() {
 	Sleep(500);
 }
 
+
 int main(void) {
 	srand((unsigned int)time(NULL));
 	char 이름[50];
@@ -216,6 +225,7 @@ int main(void) {
 		}
 		printf("==================================================\n");
 		Sleep(500);
+		이전위치 = 고양이위치;
 
 		// 기분 나빠짐
 		int 주사위 = ran(6, 1);
@@ -233,8 +243,7 @@ int main(void) {
 			}
 		}
 
-		// 이전 위치 저장
-		이전위치 = 고양이위치;
+
 
 		// 기분에 따른 이동
 		if (기분 == 0) {
