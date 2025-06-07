@@ -1,16 +1,13 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <Windows.h>
 #include <stdlib.h>
 #include <time.h>
 
-#define ROOM_WIDTH 15
-#define HME_POS 1
-#define BWL_POS (ROOM_WIDTH - 2)
-#define MAX(a, b) ((a) >= (b) ? (a) : (b))
 
-int random(int a, int b) {
+int ran(int a, int b) {
 	return rand() % a + b;
 }
+
 
 void sp() {
 	Sleep(500);
@@ -21,68 +18,61 @@ int cat = 1;
 int main(void) {
 	srand((unsigned int)time(NULL));
 	char name[50];
-	printf("****¾ß¿ËÀÌ¿Í ¼öÇÁ****\n");
-	printf("      /\\_/\\\n /\\  / o o \\\n//\\\\ \\~(*)~/\n`  \\/   ^ / \n   l \\ll ll \n   \\ 'll ll \n    \\)()-())\n");
-	printf("¾ß¿ËÀÌÀÇ ÀÌ¸§À» Áö¾îÁÖ¼¼¿ä:");
+	printf("****ê³ ì–‘ì´ì™€ ìˆ˜í”„ VER2****\n");
+	printf(" /\\_/\\  \n");
+	printf("( o.o ) \n");
+	printf(" > ^ <  \n");
+	printf("ì•¼ì˜¹ì´ì˜ ì´ë¦„ì„ ì§€ì–´ì£¼ì„¸ìš”:");
 	scanf_s("%s", name, sizeof(name));
-	printf("¾ß¿ËÀÌÀÇ ÀÌ¸§Àº %sÀÔ´Ï´Ù.", name);
+	printf("ì•¼ì˜¹ì´ì˜ ì´ë¦„ì€ %sìž…ë‹ˆë‹¤.", name);
 	Sleep(1000); system("cls");
 
-
-
-	int match = 2;
+	int RE = 2;
 	int Move;
 	int Soup = 0;
-	int catback;
-	int Choice;
 	int CP = 0;
 	int Feelings = 3;
-	int S = random(BWL_POS, HME_POS);
-	int T = random(BWL_POS, HME_POS);
-	int Tset = 0;
-	int Sset = 0;
+
+
 
 	while (1) {
-		printf("==================== ÇöÀç »óÅÂ ===================\n");
-		printf("ÇöÀç±îÁö ¸¸µç ¼öÇÁ: %d°³\n", Soup);
-		printf("CP: %d Æ÷ÀÎÆ®\n", CP);
-		printf("%s ±âºÐ(0~3): %d\n", name, Feelings);
+		printf("==================== í˜„ìž¬ ìƒíƒœ ===================\n");
+		printf("í˜„ìž¬ê¹Œì§€ ë§Œë“  ìˆ˜í”„: %dê°œ\n", Soup);
+		printf("CP: %d í¬ì¸íŠ¸\n", CP);
+		printf("%s ê¸°ë¶„(0~3): %d\n", name, Feelings);
 		switch (Feelings) {
 		default:
-			printf("±âºÐÀÌ ¸Å¿ì ³ª»Þ´Ï´Ù.\n");
+			printf("ê¸°ë¶„ì´ ë§¤ìš° ë‚˜ì©ë‹ˆë‹¤.\n");
 			break;
 		case 1:
-			printf("½É½ÉÇØÇÕ´Ï´Ù.\n");
+			printf("ì‹¬ì‹¬í•´í•©ë‹ˆë‹¤.\n");
 			break;
 		case 2:
-			printf("½Ä»§À» ±Á½À´Ï´Ù.\n");
+			printf("ì‹ë¹µì„ êµ½ìŠµë‹ˆë‹¤.\n");
 			break;
 		case 3:
-			printf("°ñ°ñ¼ÛÀ» ºÎ¸¨´Ï´Ù.\n");
+			printf("ê³¨ê³¨ì†¡ì„ ë¶€ë¦…ë‹ˆë‹¤.\n");
 			break;
 		}
-		printf("Áý»ç¿ÍÀÇ °ü°è(0~4): %d\n", match);
-		switch (match) {
+		printf("ì§‘ì‚¬ì™€ì˜ ê´€ê³„(0~4): %d\n", RE);
+		switch (RE) {
 		case 4:
-			printf("Áý»ç ²­µüÁöÀÔ´Ï´Ù.\n");
+			printf("ì§‘ì‚¬ ê»Œë”±ì§€ìž…ë‹ˆë‹¤.\n");
 			break;
 		case 3:
-			printf("ÈÇ¸¢ÇÑ Áý»ç·Î ÀÎÁ¤ ¹Þ°í ÀÖ½À´Ï´Ù.\n");
+			printf("í›Œë¥­í•œ ì§‘ì‚¬ë¡œ ì¸ì • ë°›ê³  ìžˆìŠµë‹ˆë‹¤.\n");
 			break;
 		case 2:
-			printf("±×·°Àú·° ¾µ ¸¸ÇÑ Áý»çÀÔ´Ï´Ù.\n");
+			printf("ê·¸ëŸ­ì €ëŸ­ ì“¸ ë§Œí•œ ì§‘ì‚¬ìž…ë‹ˆë‹¤.\n");
 			break;
 		case 1:
-			printf("°£½Ä ÀÚÆÇ±â Ãë±ÞÀÔ´Ï´Ù.\n");
+			printf("ê°„ì‹ ìžíŒê¸° ì·¨ê¸‰ìž…ë‹ˆë‹¤.\n");
 			break;
 		default:
-			printf("°ç¿¡ ¿À´Â °ÍÁ¶Â÷ ½È¾îÇÕ´Ï´Ù.\n");
+			printf("ê³ì— ì˜¤ëŠ” ê²ƒì¡°ì°¨ ì‹«ì–´í•©ë‹ˆë‹¤.\n");
 			break;
 		}
 		printf("==================================================\n");
 		Sleep(500);
 
-		catback = cat;
-
-	}
 }
