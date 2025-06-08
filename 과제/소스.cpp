@@ -505,6 +505,27 @@ int main(void) {
 
 		sp();
 		system("cls");
+		
+		if (turn == 3) {
+			int 정답;
+			printf("제작자의 생일은 언제일까요?(12월달) 정답은 일만 숫자로 입력.\n");
+			printf(">>");
+			scanf_s("%d",&정답);
+			if (정답 == 16) {
+				printf("정답입니다");
+				sp();
+				system("cls");
+			}
+			else {
+				printf("오답입니다");
+				sp();
+				system("cls");
+			}
+			
+
+		}
+
+
 		turn++;
 	}
 	
