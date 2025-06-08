@@ -16,7 +16,7 @@ void sp() {
 	Sleep(500);
 }
 
-int 고양이위치 = 집위치;
+int 고양이위치 = 1;
 int 이전위치;
 char 이름[50];
 int 기분, 친밀도;
@@ -29,7 +29,7 @@ int 스크유무 = 0;
 int 레이저유무 = 0;
 int 쥐유무 = 0;
 int 구매;
-
+int turn = 1;
 
 
 
@@ -56,6 +56,7 @@ int main(void) {
 	int 기분 = 3;
 
 	while (1) {
+		printf("====================    %d  턴 ===================\n",turn);
 		printf("==================== 현재 상태 ===================\n");
 		printf("현재까지 만든 수프: %d개\n", 수프);
 		printf("CP: %d 포인트\n", CP);
@@ -504,7 +505,7 @@ int main(void) {
 
 		sp();
 		system("cls");
-
+		turn++;
 	}
 	
 }
