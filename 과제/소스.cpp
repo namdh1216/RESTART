@@ -91,41 +91,6 @@ void CP상점() {
 	
 }
 
-void 집그리기() {
-	printf("\n");
-	for (int i = 0; i < 4; i++) {
-
-		for (int j = 0; j < 공간크기; j++) {
-
-			if (j == 0 || j == 공간크기 - 1 || i == 0 || i == 3) {
-				printf("#");
-			}
-			else if (i == 1 && j == 냄비위치) {
-				printf("B");
-			}
-			else if (i == 냄비위치 && j == 1) {
-				printf("H");
-			}
-			else if (i == 2 && j == 이전위치 && 이전위치 != 고양이위치) {
-				printf(".");
-			}
-			else if (i == 2 && j == 고양이위치) {
-				printf("C");
-			}
-			else if (캣타워유무 == 1 && i == 1 && j == 캣타) {
-				printf("T");
-			}
-			else if (스크유무 == 1 && i == 1 && j == 스크) {
-				printf("S");
-			}
-			else {
-				printf(" ");
-			}
-		}
-		printf("\n");
-
-	}
-}
 void 상호작용() {
 	int 선택;
 	if (캣타워유무 == 1 && 스크유무 == 0) {
@@ -395,10 +360,40 @@ int main(void) {
 			}
 			수프++;
 		}
-	
-		// 방 구조 출력
-		printf("\n[방 구조]\n");
-		집그리기();
+		printf("\n");
+		for (int i = 0; i < 4; i++) {
+
+			for (int j = 0; j < 공간크기; j++) {
+
+				if (j == 0 || j == 공간크기 - 1 || i == 0 || i == 3) {
+					printf("#");
+				}
+				else if (i == 1 && j == 냄비위치) {
+					printf("B");
+				}
+				else if (i == 집위치 && j == 1) {
+					printf("H");
+				}
+				else if (i == 2 && j == 이전위치 && 이전위치 != 고양이위치) {
+					printf(".");
+				}
+				else if (i == 2 && j == 고양이위치) {
+					printf("C");
+				}
+				else if (캣타워유무 == 1 && i == 1 && j == 캣타) {
+					printf("T");
+				}
+				else if (스크유무 == 1 && i == 1 && j == 스크) {
+					printf("S");
+				}
+				else {
+					printf(" ");
+				}
+			}
+			printf("\n");
+
+		}
+
 		//상호작용 멘트 출력
 		상호작용();
 		// CP 생산
